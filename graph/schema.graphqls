@@ -1,0 +1,117 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+type Todo {
+  id: ID!
+  text: String!
+  done: Boolean!
+  user: User!
+}
+
+type User {
+  id: ID!
+  name: String!
+}
+
+type Query {
+  todos: [Todo!]!
+  addition(input:additionInput):additionResponse
+  subtraction(input:subInput):subResponse
+  multiplication(input:mulInput):mulResponse
+  division(input:divInput):divResponse
+  calculation(input:calInput):calResponse
+  datafetch(input:studentData):[studentOutput]
+  excelData:excelOutput
+}
+
+type excelOutput{
+  status : String
+}
+
+input studentData{
+  inp : String
+}
+
+type studentOutput{
+  ID : String
+  FirstName : String
+  LastName : String
+  Gender : String
+  Roll: Int
+  BloodGroup : String
+  DOB : String
+  PhNo : Int
+}
+
+input additionInput{
+  number1 : Int 
+  number2 : Int 
+} 
+  
+type additionResponse{
+  number3 : Int
+}
+
+input subInput{
+  number1 : Int 
+  number2 : Int  
+  }
+
+  type subResponse{
+  number3 : Int
+}
+
+input mulInput{
+  number1 : Int 
+  number2 : Int  
+  }
+
+ type mulResponse{
+  number3 : Int
+}
+
+input divInput{
+  number1 : Int 
+  number2 : Int 
+  }
+
+type divResponse{
+  number3 : Int
+}
+
+input calInput{
+  operator : String
+  number1 : Int 
+  number2 : Int 
+  }
+
+  type calResponse{
+  result : Int
+}
+
+input NewTodo {
+  text: String!
+  userId: String!
+}
+
+type Mutation {
+  createTodo(input: NewTodo!): Todo!
+  upsertStudent(input: studentInput): studentResponse
+}
+
+input studentInput{
+  ID : String
+  FirstName : String!
+  LastName : String
+  Gender : String
+  Roll: Int
+  BloodGroup : String!
+  DOB : String!
+  PhNo : Int
+}
+
+type studentResponse{
+  ID : String
+  status :[String]!
+}
